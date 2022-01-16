@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">World Movies</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie_rating_complete">/10 IMDb</string>
+    <string name="movie_rating">9.1</string>
+    <string name="movie_name">Spiderman: no Way Home</string>
+    <string name="title_activity_view">ViewActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
+    <string name="world_movies">World Movies</string>
+    <string name="now_showing">Now Showing</string>
+    <string name="see_more">See more</string>
+    <string name="popular">Popular</string>
+    <string name="spiderman_no_way_home">Spiderman: No way Home</string>
+    <string name="length">Length</string>
+    <string name="language">Language</string>
+    <string name="rating">Rating</string>
+    <string name="_2h_28min">2h 28min</string>
+    <string name="english">English</string>
+    <string name="pg_13">PG-13</string>
+    <string name="description_view">Description</string>
+    <string name="cast">Cast</string>
+    <string name="see_more_recycler">See more</string>
+    <string name="_1h_47m">1h 47m</string>
+    <string name="shang_chi_and_the_legend_of_the_ten_rings">Shang-Chi and the Legend of the Ten Rings</string>
+    <string name="andrew_garfield">Andrew Garfield</string>
+</resources>

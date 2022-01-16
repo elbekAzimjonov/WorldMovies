@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginActivity">
+
+    <ImageView
+        android:id="@+id/splash_con"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/ic_movie" />
+
+    <TextView
+        android:id="@+id/splash_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splash_con"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Welcome to World Movies"
+        android:textColor="#223263"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/splash_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splash_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Sign in to continue"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/userEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/splash_hint"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_email_form"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:hint="Your Email"
+        android:paddingLeft="10dp"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/userEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_email_form"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:hint="Password"
+        android:paddingLeft="10dp"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/user_password"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#40BFFF"
+        android:gravity="center"
+        android:text="Sign In"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/lineaLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signIn"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="134dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:background="#EBF0FF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:text="OR"
+            android:textColor="#9098B1"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="134dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:background="#EBF0FF" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/googleSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lineaLine"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_login">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp18"
+            android:src="@drawable/google" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Login with Google"
+            android:textColor="#9098B1"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/googleSignUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have a account?"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Register"
+            android:textColor="#40BFFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

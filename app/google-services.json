@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "313972026277",
+    "project_id": "world-movies-33328",
+    "storage_bucket": "world-movies-33328.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313972026277:android:9f09c86ea5090368d0d64c",
+        "android_client_info": {
+          "package_name": "com.elbek.worldmovies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313972026277-tobbf1j9kj00gl2uvba9pvaop3psc1jk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoWQllQ6mijk_ssAPB6ORfomvNKgmHSl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313972026277-tobbf1j9kj00gl2uvba9pvaop3psc1jk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

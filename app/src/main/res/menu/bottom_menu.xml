@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cinema_menu"
+        android:icon="@drawable/cinema"
+        android:title="Cinema" />
+    <item
+        android:id="@+id/bookmark_menu"
+        android:icon="@drawable/ic_baseline_bookmark_border_24"
+        android:title="Saved" />
+    <item
+        android:id="@+id/settings_menu"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings" />
+</menu>
