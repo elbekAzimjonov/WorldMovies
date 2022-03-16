@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorldMovies" >
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="com.elbek.worldmovies.presentation.ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AuthenticationActivity"
+            android:name="com.elbek.worldmovies.presentation.ui.AuthenticationActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,17 +25,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.PlayerActivity"
+            android:name="com.elbek.worldmovies.presentation.ui.PlayerActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.ViewActivity"
+            android:name="com.elbek.worldmovies.presentation.ui.ViewActivity"
             android:exported="false"
             android:label="@string/title_activity_view"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.WorldMovies.NoActionBar" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.elbek.worldmovies.presentation.ui.MainActivity"
             android:exported="false" >
         </activity>
     </application>

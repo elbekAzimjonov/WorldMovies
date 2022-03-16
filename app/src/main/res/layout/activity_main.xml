@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clearTaskOnLaunch="true"
     android:launchMode="singleTask"
-    tools:context=".ui.MainActivity">
+    tools:context=".presentation.ui.MainActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomAppBar"
