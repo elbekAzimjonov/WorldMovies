@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.Api
+package com.elbek.worldmovies.api
 
 data class VideoApi(
     val id: Int,

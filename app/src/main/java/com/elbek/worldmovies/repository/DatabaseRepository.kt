@@ -1,11 +1,8 @@
-package com.elbek.worldmovies.Reapository
+package com.elbek.worldmovies.repository
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.elbek.worldmovies.Api.MovieApi
-import com.elbek.worldmovies.Models.Movies
+import com.elbek.worldmovies.models.Movies
 import com.elbek.worldmovies.db.MoviesDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

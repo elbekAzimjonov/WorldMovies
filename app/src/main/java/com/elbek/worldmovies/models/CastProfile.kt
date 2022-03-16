@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.Models
+package com.elbek.worldmovies.models
 
 class CastProfile (
     val castUrl:String?,

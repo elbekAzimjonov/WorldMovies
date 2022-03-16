@@ -1,13 +1,12 @@
-package com.elbek.worldmovies.Reapository
+package com.elbek.worldmovies.repository
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.elbek.worldmovies.Api.MovieApi
-import com.elbek.worldmovies.Api.VideoApi
-import com.elbek.worldmovies.Api.castApi.CastActors
-import com.elbek.worldmovies.Retrofit.ApiClient
-import com.elbek.worldmovies.Retrofit.ApiRequest
+import com.elbek.worldmovies.api.MovieApi
+import com.elbek.worldmovies.api.VideoApi
+import com.elbek.worldmovies.api.castApi.CastActors
+import com.elbek.worldmovies.retrofit.ApiClient
+import com.elbek.worldmovies.retrofit.ApiRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

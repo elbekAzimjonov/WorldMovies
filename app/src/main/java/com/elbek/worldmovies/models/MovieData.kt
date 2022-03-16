@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.Models
+package com.elbek.worldmovies.models
 
 data class MovieData (
     val title: String,

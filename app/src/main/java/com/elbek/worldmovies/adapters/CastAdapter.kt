@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.elbek.worldmovies.Models.CastProfile
+import com.elbek.worldmovies.models.CastProfile
 import com.elbek.worldmovies.R
 import com.elbek.worldmovies.databinding.ItemCastBinding
-import com.elbek.worldmovies.databinding.VerticalRvItemBinding
 
 class CastAdapter(val castList: ArrayList<CastProfile>) :
     RecyclerView.Adapter<CastAdapter.CastViewHolder>() {

@@ -1,23 +1,15 @@
 package com.elbek.worldmovies.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.elbek.worldmovies.Api.Result
-import com.elbek.worldmovies.Models.MovieData
+import com.elbek.worldmovies.api.Result
 import com.elbek.worldmovies.R
 import com.elbek.worldmovies.databinding.VerticalRvItemBinding
-
-
-import com.squareup.picasso.Picasso
-import org.w3c.dom.ls.LSInput
 
 class PopularRvAdapter(
     var context: Context,

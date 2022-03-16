@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.Api.castApi
+package com.elbek.worldmovies.api.castApi
 
 data class CastActors(
     val adult: Boolean,

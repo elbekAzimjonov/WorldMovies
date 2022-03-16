@@ -2,8 +2,7 @@ package com.elbek.worldmovies.db
 
 import android.content.Context
 import androidx.room.*
-import com.elbek.worldmovies.Models.Movies
-import okhttp3.internal.notify
+import com.elbek.worldmovies.models.Movies
 
 
 @Database(entities = [Movies::class], version = 1, exportSchema = false)

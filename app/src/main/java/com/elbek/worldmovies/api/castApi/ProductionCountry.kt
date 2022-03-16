@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.Api.castApi
+package com.elbek.worldmovies.api.castApi
 
 data class ProductionCountry(
     val iso_3166_1: String,

@@ -5,7 +5,7 @@
     android:layout_height="50dp"
     android:layout_marginHorizontal="5dp"
     android:layout_marginTop="10dp"
-    tools:context=".Fragment.SettingsFragment">
+    tools:context=".fragments.SettingsFragment">
 
     <ImageView
         android:id="@+id/nigth_image"

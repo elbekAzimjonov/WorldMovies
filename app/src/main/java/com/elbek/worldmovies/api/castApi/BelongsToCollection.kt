@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.Api.castApi
+package com.elbek.worldmovies.api.castApi
 
 data class BelongsToCollection(
     val backdrop_path: String,

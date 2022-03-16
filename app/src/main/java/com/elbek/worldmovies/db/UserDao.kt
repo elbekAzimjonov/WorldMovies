@@ -2,8 +2,7 @@ package com.elbek.worldmovies.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.elbek.worldmovies.Api.Result
-import com.elbek.worldmovies.Models.Movies
+import com.elbek.worldmovies.models.Movies
 
 @Dao
 interface UserDao {

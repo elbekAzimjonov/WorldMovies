@@ -3,13 +3,11 @@ package com.elbek.worldmovies.ui
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.elbek.worldmovies.Fragment.FavoriteFragment
-import com.elbek.worldmovies.Fragment.HomeFragment
-import com.elbek.worldmovies.Fragment.SettingsFragment
+import com.elbek.worldmovies.fragments.FavoriteFragment
+import com.elbek.worldmovies.fragments.HomeFragment
+import com.elbek.worldmovies.fragments.SettingsFragment
 import com.elbek.worldmovies.R
 import com.elbek.worldmovies.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -47,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
     private fun makeCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView, fragment)
