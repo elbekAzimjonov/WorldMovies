@@ -6,16 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.elbek.worldmovies.databinding.ActivityLoginBinding
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
-    lateinit var auth: FirebaseAuth
-    var currentUser: FirebaseUser? = null
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
+    private var currentUser: FirebaseUser? = null
 
     private var loginCheck = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,23 +30,21 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.userPassword.text.toString()
             if (userEmail.isNotEmpty() && password.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(userEmail, password)
-                    .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
-                        override fun onComplete(p0: Task<AuthResult>) {
-                            if (p0.isSuccessful) {
-                                loginCheck = true
-                                saveData(loginCheck)
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "Something went wrong",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
+                    .addOnCompleteListener { p0 ->
+                        if (p0.isSuccessful) {
+                            loginCheck = true
+                            saveData(loginCheck)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Something went wrong",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
-                    })
+                    }
             } else {
                 Toast.makeText(this, "Email or Password is incorrect", Toast.LENGTH_SHORT).show()
             }

@@ -1,101 +1,96 @@
 package com.elbek.worldmovies.presentation.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.elbek.worldmovies.data.api.MovieApi
-import com.elbek.worldmovies.data.api.VideoApi
-import com.elbek.worldmovies.data.api.castApi.CastActors
-import com.elbek.worldmovies.presentation.retrofit.ApiClient
-import com.elbek.worldmovies.presentation.retrofit.ApiRequest
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.elbek.worldmovies.data.models.MovieApi
+import com.elbek.worldmovies.data.models.VideoApi
+import com.elbek.worldmovies.data.models.castApi.CastActors
+import com.elbek.worldmovies.presentation.network.MovieDataSource
+import com.elbek.worldmovies.data.domain.Resource
+import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class MovieRepository {
+@Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
+@OptIn(DelicateCoroutinesApi::class)
+class MovieRepository @Inject constructor(private val movieDataSource: MovieDataSource) {
+    fun getTopLiveData(): MutableLiveData<Resource<MovieApi>> {
+        GlobalScope.launch {
+            topMovieLiveData.postValue(Resource.loading(null))
+            coroutineScope {
+                try {
+                    val async = async { movieDataSource.getTopMovie() }
+                    val movieList = async.await()
+                    topMovieLiveData.postValue(Resource.success(movieList))
+                } catch (e: Exception) {
+                    topMovieLiveData.postValue(Resource.error(e.message.toString(), null))
+                }
+
+            }
+        }
+        return topMovieLiveData
+    }
+
+    fun getVideoLiveData(movieId: Int): MutableLiveData<Resource<VideoApi>> {
+        GlobalScope.launch {
+            videoLiveData.postValue(Resource.loading(null))
+            coroutineScope {
+                try {
+                    val async = async { movieDataSource.getVideVideo(movieId) }
+                    val videApi = async.await()
+                    videoLiveData.postValue(Resource.success(videApi))
+                } catch (e: Exception) {
+                    videoLiveData.postValue(
+                        Resource.error(
+                            e.message.toString(), null
+                        )
+                    )
+                }
+            }
+
+        }
+        return videoLiveData
+    }
+
+    fun getPopularLiveData(): MutableLiveData<Resource<MovieApi>> {
+        GlobalScope.launch {
+            popularLiveData.postValue(Resource.loading(null))
+            coroutineScope {
+                try {
+                    val async = async { movieDataSource.getPopularMovie() }
+                    val movieList = async.await()
+                    popularLiveData.postValue(Resource.success(movieList))
+                } catch (e: Exception) {
+                    popularLiveData.postValue(Resource.error(e.message.toString(), null))
+                }
+
+            }
+        }
+        return popularLiveData
+    }
+
+    fun getAllActor(key: Int): MutableLiveData<Resource<CastActors>> {
+        GlobalScope.launch {
+            actorsLiveData.postValue(Resource.loading(null))
+            coroutineScope {
+                try {
+                    val async = async { movieDataSource.getAllActor(key) }
+                    val actorList = async.await()
+                    actorsLiveData.postValue(Resource.success(actorList))
+                } catch (e: java.lang.Exception) {
+                    actorsLiveData.postValue(
+                        Resource.error(
+                            e.message.toString(), null
+                        )
+                    )
+                }
+            }
+        }
+        return actorsLiveData
+    }
+
     companion object {
-        private var topMovieLiveData: MutableLiveData<MovieApi> = MutableLiveData()
-        private var popularLiveData: MutableLiveData<MovieApi> = MutableLiveData()
-        private var actorsLiveData: MutableLiveData<CastActors> = MutableLiveData()
-        private var videoLiveData: MutableLiveData<VideoApi> = MutableLiveData()
-        private val apiClient = ApiClient()
-        private val retrofit = apiClient.getRetrofit()
-        private val apiService = retrofit.create(ApiRequest::class.java)
-        fun getVideoLiveData(movieId: Int): MutableLiveData<VideoApi> {
-            CoroutineScope(Dispatchers.IO).launch {
-                apiService.getMovieKey(movieId).enqueue(object : Callback<VideoApi> {
-                    override fun onResponse(call: Call<VideoApi>, response: Response<VideoApi>) {
-                        if (response.isSuccessful) {
-                            val videApi = response.body()
-                            videoLiveData.postValue(videApi)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<VideoApi>, t: Throwable) {
-
-                    }
-                })
-            }
-            return videoLiveData
-        }
-
-        fun getTopLiveData(): MutableLiveData<MovieApi> {
-            CoroutineScope(Dispatchers.IO).launch {
-                apiService.getMoviesApi().enqueue(object : Callback<MovieApi> {
-                    override fun onResponse(call: Call<MovieApi>, response: Response<MovieApi>) {
-                        if (response.isSuccessful) {
-                            val data = response.body()
-                            topMovieLiveData.postValue(data)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<MovieApi>, t: Throwable) {
-
-                    }
-                })
-            }
-            return topMovieLiveData
-        }
-
-        fun getPopularLiveData(): MutableLiveData<MovieApi> {
-            CoroutineScope(Dispatchers.IO).launch {
-                apiService.getPopularMovie().enqueue(object : Callback<MovieApi> {
-                    override fun onResponse(call: Call<MovieApi>, response: Response<MovieApi>) {
-                        if (response.isSuccessful) {
-                            val data = response.body()
-                            popularLiveData.postValue(data)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<MovieApi>, t: Throwable) {
-                    }
-                })
-            }
-            return popularLiveData
-        }
-
-        fun getActorsLiveData(movieId: Int): MutableLiveData<CastActors> {
-            CoroutineScope(Dispatchers.IO).launch {
-                apiService.getActors(movieId).enqueue(object : Callback<CastActors> {
-                    override fun onResponse(
-                        call: Call<CastActors>,
-                        response: Response<CastActors>
-                    ) {
-                        if (response.isSuccessful) {
-                            val actorsData = response.body()
-                            actorsLiveData.postValue(actorsData)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<CastActors>, t: Throwable) {
-
-                    }
-
-                })
-            }
-            return actorsLiveData
-        }
-
+        private val topMovieLiveData = MutableLiveData<Resource<MovieApi>>()
+        private var popularLiveData = MutableLiveData<Resource<MovieApi>>()
+        private var videoLiveData = MutableLiveData<Resource<VideoApi>>()
+        private var actorsLiveData = MutableLiveData<Resource<CastActors>>()
     }
 }

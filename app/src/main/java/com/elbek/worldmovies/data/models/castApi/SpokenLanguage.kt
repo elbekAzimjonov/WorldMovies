@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.data.api.castApi
+package com.elbek.worldmovies.data.models.castApi
 
 data class SpokenLanguage(
     val english_name: String,

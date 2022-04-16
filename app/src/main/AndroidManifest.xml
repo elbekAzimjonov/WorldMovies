@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.elbek.worldmovies" >
+    package="com.elbek.worldmovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".presentation.di.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_movie"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_movie"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WorldMovies" >
+        android:theme="@style/Theme.WorldMovies">
         <activity
             android:name="com.elbek.worldmovies.presentation.ui.LoginActivity"
             android:exported="false" />
         <activity
             android:name="com.elbek.worldmovies.presentation.ui.AuthenticationActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,8 +37,7 @@
             android:theme="@style/Theme.WorldMovies.NoActionBar" />
         <activity
             android:name="com.elbek.worldmovies.presentation.ui.MainActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

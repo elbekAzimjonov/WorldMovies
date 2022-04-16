@@ -1,46 +1,29 @@
 package com.elbek.worldmovies.presentation.viewModel
 
-import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elbek.worldmovies.data.api.MovieApi
-import com.elbek.worldmovies.data.api.VideoApi
-import com.elbek.worldmovies.data.api.castApi.CastActors
-import com.elbek.worldmovies.data.models.Movies
-import com.elbek.worldmovies.presentation.repository.DatabaseRepository
-
+import com.elbek.worldmovies.data.models.MovieApi
+import com.elbek.worldmovies.data.models.VideoApi
+import com.elbek.worldmovies.data.models.castApi.CastActors
+import com.elbek.worldmovies.data.domain.Resource
 import com.elbek.worldmovies.presentation.repository.MovieRepository
+import javax.inject.Inject
 
-class MovieViewModel : ViewModel() {
-    private var videoLiveData: MutableLiveData<VideoApi> = MutableLiveData()
-    fun initDatabase(context: Context) {
-        DatabaseRepository.initDatabase(context)
+class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
+    fun getVideoLiveData(movieId: Int): LiveData<Resource<VideoApi>> {
+
+        return repository.getVideoLiveData(movieId)
     }
 
-    fun getDbViewModel(): LiveData<List<Movies>> {
-
-        return DatabaseRepository.getAllMovie()
+    fun getPopularLiveData(): LiveData<Resource<MovieApi>> {
+        return repository.getPopularLiveData()
     }
 
-    fun getVideVideModel(movieId: Int): LiveData<VideoApi> {
-        videoLiveData = MovieRepository.getVideoLiveData(movieId)
-        return videoLiveData
+    fun getTopViewModel(): LiveData<Resource<MovieApi>> {
+        return repository.getTopLiveData()
     }
 
-    fun getTopViewModel(): LiveData<MovieApi> {
-        return MovieRepository.getTopLiveData()
-    }
-
-    fun getPopularViewModel(): LiveData<MovieApi> {
-        return MovieRepository.getPopularLiveData()
-    }
-
-    fun getActorsViewModel(movieId: Int): LiveData<CastActors> {
-        return MovieRepository.getActorsLiveData(movieId)
-    }
-
-    fun insertMovies(movies: Movies) {
-        DatabaseRepository.insertMovie(movies)
+    fun getAllActor(key: Int): LiveData<Resource<CastActors>> {
+        return repository.getAllActor(key)
     }
 }

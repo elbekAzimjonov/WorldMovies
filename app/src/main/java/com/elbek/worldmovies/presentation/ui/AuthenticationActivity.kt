@@ -6,16 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.elbek.worldmovies.databinding.ActivityAuthenticationBinding
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class AuthenticationActivity : AppCompatActivity() {
-    lateinit var binding: ActivityAuthenticationBinding
-    lateinit var auth: FirebaseAuth
-    var currentUser: FirebaseUser? = null
+    private lateinit var binding: ActivityAuthenticationBinding
+    private lateinit var auth: FirebaseAuth
+    private var currentUser: FirebaseUser? = null
     private var loginCheck = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,24 +32,22 @@ class AuthenticationActivity : AppCompatActivity() {
             val rePassword = binding.passwordAgain.text.toString()
             if (password == rePassword && userName.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(userEmail, password)
-                    .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
-                        override fun onComplete(p0: Task<AuthResult>) {
-                            if (p0.isSuccessful) {
-                                loginCheck = true
-                                saveData(loginCheck)
-                                val intents =
-                                    Intent(this@AuthenticationActivity, MainActivity::class.java)
-                                startActivity(intents)
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    this@AuthenticationActivity,
-                                    "Something went wrong",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
+                    .addOnCompleteListener { p0 ->
+                        if (p0.isSuccessful) {
+                            loginCheck = true
+                            saveData(loginCheck)
+                            val intents =
+                                Intent(this@AuthenticationActivity, MainActivity::class.java)
+                            startActivity(intents)
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@AuthenticationActivity,
+                                "Something went wrong",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
-                    })
+                    }
             } else {
                 Toast.makeText(this, "Password or UserName is incorrect", Toast.LENGTH_SHORT).show()
             }

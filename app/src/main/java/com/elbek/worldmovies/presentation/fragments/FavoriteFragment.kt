@@ -26,31 +26,31 @@ class FavoriteFragment : Fragment() {
     ): View {
         fragmentFavoriteBinding = FragmentFavoriteBinding.inflate(layoutInflater)
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        movieViewModel.initDatabase(requireContext())
+//        movieViewModel.initDatabase(requireContext())
         list = ArrayList()
 
-        movieViewModel.getDbViewModel().observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
-                fragmentFavoriteBinding.animationFaund.visibility = View.VISIBLE
-            } else {
-                fragmentFavoriteBinding.animationFaund.visibility = View.INVISIBLE
-                for (i in 0..it.lastIndex) {
-                    val name = it[i]
-                    list.add(name)
-                }
-                favoriteAdapter = FavoriteAdapter(list)
-                fragmentFavoriteBinding.favoriteFragmentRecycler.addItemDecoration(
-                    MoviesItemDeclaration(
-                        resources.getDimension(R.dimen.dp8).toInt(),
-                        resources.getDimension(R.dimen.dp18).toInt()
-                    )
-                )
-                fragmentFavoriteBinding.favoriteFragmentRecycler.layoutManager =
-                    GridLayoutManager(requireActivity(), 2)
-
-                fragmentFavoriteBinding.favoriteFragmentRecycler.adapter = favoriteAdapter
-            }
-        }
+//        movieViewModel.getDbViewModel().observe(viewLifecycleOwner) {
+//            if (it.isEmpty()) {
+//                fragmentFavoriteBinding.animationFaund.visibility = View.VISIBLE
+//            } else {
+//                fragmentFavoriteBinding.animationFaund.visibility = View.INVISIBLE
+//                for (i in 0..it.lastIndex) {
+//                    val name = it[i]
+//                    list.add(name)
+//                }
+//                favoriteAdapter = FavoriteAdapter(list)
+//                fragmentFavoriteBinding.favoriteFragmentRecycler.addItemDecoration(
+//                    MoviesItemDeclaration(
+//                        resources.getDimension(R.dimen.dp8).toInt(),
+//                        resources.getDimension(R.dimen.dp18).toInt()
+//                    )
+//                )
+//                fragmentFavoriteBinding.favoriteFragmentRecycler.layoutManager =
+//                    GridLayoutManager(requireActivity(), 2)
+//
+//                fragmentFavoriteBinding.favoriteFragmentRecycler.adapter = favoriteAdapter
+//            }
+//        }
 
 
         return fragmentFavoriteBinding.root

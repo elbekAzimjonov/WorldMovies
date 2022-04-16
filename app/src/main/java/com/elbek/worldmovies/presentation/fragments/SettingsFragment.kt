@@ -17,6 +17,7 @@ import com.elbek.worldmovies.R
 
 class SettingsFragment : Fragment() {
     private lateinit var valueAnimator: ValueAnimator
+
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

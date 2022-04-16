@@ -1,3 +1,5 @@
+
+
 package com.elbek.worldmovies.presentation.ui
 
 import android.content.Context
@@ -10,11 +12,14 @@ import com.elbek.worldmovies.presentation.fragments.HomeFragment
 import com.elbek.worldmovies.presentation.fragments.SettingsFragment
 import com.elbek.worldmovies.R
 import com.elbek.worldmovies.databinding.ActivityMainBinding
+import com.elbek.worldmovies.presentation.di.App
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as App).applicationComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

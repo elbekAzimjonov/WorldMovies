@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elbek.worldmovies.databinding.GenreItemBinding
 class GenreAdapter(val list: ArrayList<String>) :
     RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
-    inner class GenreViewHolder(val binding: GenreItemBinding) :
+    inner class GenreViewHolder(private val binding: GenreItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun getFind(position: Int) {
             for (i in 0..list.lastIndex) {

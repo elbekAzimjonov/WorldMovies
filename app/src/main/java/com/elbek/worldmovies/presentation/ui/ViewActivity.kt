@@ -5,27 +5,17 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
-import com.elbek.worldmovies.data.api.VideoApi
-import com.elbek.worldmovies.data.api.castApi.CastActors
+import com.elbek.worldmovies.data.domain.Status
+import com.elbek.worldmovies.data.models.castApi.CastActors
 import com.elbek.worldmovies.data.models.CastProfile
-import com.elbek.worldmovies.data.models.Movies
-import com.elbek.worldmovies.R
-import com.elbek.worldmovies.presentation.retrofit.ApiClient
-import com.elbek.worldmovies.presentation.retrofit.ApiRequest
 import com.elbek.worldmovies.presentation.viewModel.MovieViewModel
 import com.elbek.worldmovies.presentation.adapters.CastAdapter
 import com.elbek.worldmovies.presentation.adapters.GenreAdapter
 import com.elbek.worldmovies.databinding.ActivityViewBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.elbek.worldmovies.presentation.di.App
+import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 class ViewActivity : AppCompatActivity() {
@@ -35,19 +25,18 @@ class ViewActivity : AppCompatActivity() {
     private lateinit var genreAdapter: GenreAdapter
     private lateinit var genreList: ArrayList<String>
     private lateinit var castData: List<CastActors>
-    private lateinit var movieViewModel: MovieViewModel
+
+    @Inject
+    lateinit var movieViewModel: MovieViewModel
+
     private lateinit var videList: ArrayList<String>
     private lateinit var binding: ActivityViewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityViewBinding.inflate(layoutInflater)
         hideSystem()
+        super.onCreate(savedInstanceState)
+        (applicationContext.applicationContext as App).applicationComponent.injectMovie(this)
+        binding = ActivityViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val apiClient = ApiClient()
-        val retrofit = apiClient.getRetrofit()
-        val apiService = retrofit.create(ApiRequest::class.java)
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        movieViewModel.initDatabase(this)
         genreList = ArrayList()
         castData = ArrayList()
         castProfile = ArrayList()
@@ -61,28 +50,24 @@ class ViewActivity : AppCompatActivity() {
         val movieRating = intent.getStringExtra("movie_rating")
         val movieGenreId = intent.getIntegerArrayListExtra("movie_genre_ids")
         videList.clear()
-        CoroutineScope(Dispatchers.IO).launch {
-            apiService.getMovieKey(moviesId).enqueue(object : Callback<VideoApi> {
-                override fun onResponse(call: Call<VideoApi>, response: Response<VideoApi>) {
-                    if (response.isSuccessful) {
-                        val videApi = response.body()
-                        try {
-                            videList.add(videApi!!.results[0].key)
-                        } catch (v: IndexOutOfBoundsException) {
+        movieViewModel.getVideoLiveData(moviesId).observe(this) {
+            when (it.status) {
+               Status.LOADING->{
 
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<VideoApi>, t: Throwable) {
+               }
+                Status.SUCCESS -> {
+                    videList.add(it.data!!.results[0].key)
 
                 }
-            })
+                Status.ERROR->{
+
+                }
+            }
         }
 
         binding.floatingActionButton.setOnClickListener {
             val keyId = moviesId
-            movieViewModel.getVideVideModel(keyId).observe(this) {
+            movieViewModel.getVideoLiveData(keyId).observe(this) {
                 val intentPlayer = Intent(this, PlayerActivity::class.java)
                 intentPlayer.putExtra("movies_key", videList[0])
                 startActivity(intentPlayer)
@@ -104,20 +89,10 @@ class ViewActivity : AppCompatActivity() {
         genreAdapter = GenreAdapter(genreList)
         binding.viewGenreRecycler.adapter = genreAdapter
         binding.saveData.setOnClickListener {
-            movieViewModel.insertMovies(
-                Movies(
-                    moviesId,
-                    posterImage.toString(),
-                    movieName.toString(),
-                    movieDescription.toString(),
-                    movieRating.toString()
-                )
-            )
-            binding.saveData.setImageResource(R.drawable.ic_baseline_bookmark_24)
+
         }
         Glide.with(this)
             .load("https://image.tmdb.org/t/p/w500${movieImage}")
-            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
             .into(binding.imageView)
 
     }
@@ -129,20 +104,29 @@ class ViewActivity : AppCompatActivity() {
     }
 
     private fun getCost() {
-        movieViewModel.getActorsViewModel(moviesId).observe(this) {
-            val name = it.credits.cast
-            castProfile.clear()
-            for (i in 0..it?.credits?.cast!!.lastIndex) {
-                castProfile.add(CastProfile(name[i].profile_path, name[i].name))
+        movieViewModel.getAllActor(moviesId).observe(this) {
+            when (it.status) {
+                Status.LOADING -> {}
+                Status.SUCCESS -> {
+                    val name = it.data!!.credits.cast
+                    castProfile.clear()
+                    for (i in 0..it?.data.credits.cast.lastIndex) {
+                        castProfile.add(CastProfile(name[i].profile_path, name[i].name))
 
+                    }
+                    binding.recyclerCast.layoutManager = LinearLayoutManager(
+                        this@ViewActivity,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
+                    castAdapter = CastAdapter(castProfile)
+                    binding.recyclerCast.adapter = castAdapter
+                }
+                Status.ERROR -> {
+
+                }
             }
-            binding.recyclerCast.layoutManager = LinearLayoutManager(
-                this@ViewActivity,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
-            castAdapter = CastAdapter(castProfile)
-            binding.recyclerCast.adapter = castAdapter
+
         }
     }
 

@@ -1,4 +1,4 @@
-package com.elbek.worldmovies.data.api
+package com.elbek.worldmovies.data.models
 
 data class ResultX(
     val id: String,

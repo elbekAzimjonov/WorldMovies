@@ -16,6 +16,10 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -34,5 +38,16 @@
         <action
             android:id="@+id/action_settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+
+        android:id="@+id/movieFragment"
+        android:name="com.elbek.worldmovies.presentation.fragments.MovieFragment"
+        android:label="fragment_movie"
+        tools:layout="@layout/fragment_movie" >
+
+        <argument
+            android:name="MovieData"
+            app:argType="com.elbek.worldmovies.data.models.Result" />
     </fragment>
 </navigation>

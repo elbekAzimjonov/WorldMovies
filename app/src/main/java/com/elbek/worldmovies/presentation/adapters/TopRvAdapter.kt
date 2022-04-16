@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.elbek.worldmovies.data.api.Result
+import com.elbek.worldmovies.data.models.Result
 import com.elbek.worldmovies.R
 import com.elbek.worldmovies.databinding.HorizontalRvItemBinding
 
