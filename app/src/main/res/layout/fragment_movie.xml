@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.MovieFragment">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/shang_chi" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@color/white"
+        app:backgroundTint="#1597E5"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.6"
+        app:srcCompat="@drawable/ic_play" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/floatingActionButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="Play Trailer"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_keyboard_backspace_24" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_more_horiz_24" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_below="@id/textView"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/rectangle"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/save_data"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_bookmark_border_24" />
+
+        <TextView
+            android:id="@+id/viewMovieName"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/spiderman_no_way_home"
+            android:textColor="@color/basic_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/popular_movie_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewMovieName"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:numStars="1"
+            android:progressBackgroundTint="@color/yellow"
+            android:progressTint="@color/yellow" />
+
+        <TextView
+            android:id="@+id/view_movie_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewMovieName"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/popular_movie_rating"
+            android:text="@string/movie_rating"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewMovieName"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/view_movie_rating"
+            android:text="@string/movie_rating_complete"
+            android:textSize="12sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/view_genre_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/view_movie_rating"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:padding="5dp"
+            android:text="See more"
+            android:textColor="@color/color_genre_text"
+            android:textSize="10sp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/genre_item" />
+
+        <TextView
+            android:id="@+id/length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_genre_recycler"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/length"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/view_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/length"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/_2h_28min"
+            android:textColor="@color/basic_color" />
+
+        <TextView
+            android:id="@+id/language"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_genre_recycler"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/length"
+            android:text="@string/language"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/language"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/length"
+            android:text="@string/english"
+            android:textColor="@color/basic_color" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_genre_recycler"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_toRightOf="@+id/language"
+            android:text="@string/rating"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rating"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toRightOf="@+id/language"
+            android:text="@string/pg_13"
+            android:textColor="@color/basic_color" />
+
+        <TextView
+            android:id="@+id/des_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_time"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/description_view"
+            android:textColor="@color/genre_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/des_name"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/description"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/cast"
+            android:textColor="@color/genre_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cast_see"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/see_more"
+            android:padding="5dp"
+            android:text="@string/see_more"
+            android:textColor="@color/color_genre_text"
+            android:textSize="10sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_cast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cast"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_cast" />
+    </RelativeLayout>
+
+</RelativeLayout>
