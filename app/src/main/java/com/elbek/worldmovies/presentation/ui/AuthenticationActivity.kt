@@ -43,7 +43,7 @@ class AuthenticationActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(
                                 this@AuthenticationActivity,
-                                "Something went wrong",
+                                "Oops Something went wrong!",
                                 Toast.LENGTH_LONG
                             ).show()
                         }

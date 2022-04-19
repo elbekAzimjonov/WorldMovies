@@ -19,9 +19,10 @@ class PlayerActivity : YouTubeBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerBinding.inflate(layoutInflater)
+        hideSystem()
         setContentView(binding.root)
         val movieId = intent.getStringExtra("movies_key")
-        hideSystem()
+
         youTubePlayer = binding.youtubePlayer
         youtubePayerInit = object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(

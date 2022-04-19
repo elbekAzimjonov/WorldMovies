@@ -1,20 +1,17 @@
 package com.elbek.worldmovies.presentation.db
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.elbek.worldmovies.data.models.Movies
 
 
-@Database(entities = [Movies::class], version = 1, exportSchema = false)
+@Database(entities = [Movies::class], version = MoviesDatabase.VERSION, exportSchema = false)
 abstract class MoviesDatabase : RoomDatabase() {
+
     abstract fun userDao(): UserDao
     companion object {
-        private const val DATABASE_NAME = "movies_db"
-        fun getDatabaseInstance(context: Context): MoviesDatabase {
-            return Room.databaseBuilder(
-                context.applicationContext, MoviesDatabase::class.java, DATABASE_NAME
-            ).fallbackToDestructiveMigration()
-                .build()
-        }
+        const val VERSION = 1
     }
 }

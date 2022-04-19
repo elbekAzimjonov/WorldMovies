@@ -1,17 +1,35 @@
 package com.elbek.worldmovies.presentation.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.elbek.worldmovies.data.models.MovieApi
 import com.elbek.worldmovies.data.models.VideoApi
 import com.elbek.worldmovies.data.models.castApi.CastActors
 import com.elbek.worldmovies.presentation.network.MovieDataSource
 import com.elbek.worldmovies.data.domain.Resource
+import com.elbek.worldmovies.data.models.Movies
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 @OptIn(DelicateCoroutinesApi::class)
 class MovieRepository @Inject constructor(private val movieDataSource: MovieDataSource) {
+    val movies = MutableLiveData<List<Movies>>()
+    //RoomDatabase
+    fun insertMovie(movies: Movies) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                movieDataSource.insertMovie(movies)
+            } catch (e: Exception) {
+
+            }
+        }
+    }
+
+    fun getAllMoviesDb():LiveData<List<Movies>>{
+        return movieDataSource.getAllMoviesDb()
+    }
+
     fun getTopLiveData(): MutableLiveData<Resource<MovieApi>> {
         GlobalScope.launch {
             topMovieLiveData.postValue(Resource.loading(null))
@@ -23,7 +41,6 @@ class MovieRepository @Inject constructor(private val movieDataSource: MovieData
                 } catch (e: Exception) {
                     topMovieLiveData.postValue(Resource.error(e.message.toString(), null))
                 }
-
             }
         }
         return topMovieLiveData
@@ -75,7 +92,7 @@ class MovieRepository @Inject constructor(private val movieDataSource: MovieData
                     val async = async { movieDataSource.getAllActor(key) }
                     val actorList = async.await()
                     actorsLiveData.postValue(Resource.success(actorList))
-                } catch (e: java.lang.Exception) {
+                } catch (e: Exception) {
                     actorsLiveData.postValue(
                         Resource.error(
                             e.message.toString(), null

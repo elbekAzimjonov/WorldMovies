@@ -23,12 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+       val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val saveBoolean = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
         if (saveBoolean) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
-            // MODE_NIGHT_FOLLOW_SYSTEM.
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)

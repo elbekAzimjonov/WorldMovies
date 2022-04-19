@@ -4,12 +4,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elbek.worldmovies.data.domain.Status
 import com.elbek.worldmovies.data.models.castApi.CastActors
 import com.elbek.worldmovies.data.models.CastProfile
+import com.elbek.worldmovies.data.models.Movies
 import com.elbek.worldmovies.presentation.viewModel.MovieViewModel
 import com.elbek.worldmovies.presentation.adapters.CastAdapter
 import com.elbek.worldmovies.presentation.adapters.GenreAdapter
@@ -20,6 +22,7 @@ import javax.inject.Inject
 @Suppress("DEPRECATION")
 class ViewActivity : AppCompatActivity() {
     private var moviesId: Int = 0
+
     private lateinit var castAdapter: CastAdapter
     private lateinit var castProfile: ArrayList<CastProfile>
     private lateinit var genreAdapter: GenreAdapter
@@ -42,6 +45,7 @@ class ViewActivity : AppCompatActivity() {
         castProfile = ArrayList()
         videList = ArrayList()
 
+
         moviesId = intent.getIntExtra("movies_id", 0)
         val movieImage = intent.getStringExtra("movies_image")
         val movieName = intent.getStringExtra("movies_name")
@@ -56,8 +60,11 @@ class ViewActivity : AppCompatActivity() {
 
                }
                 Status.SUCCESS -> {
-                    videList.add(it.data!!.results[0].key)
+                    try {
+                        videList.add(it.data!!.results[0].key)
+                    }catch (e:IndexOutOfBoundsException){
 
+                    }
                 }
                 Status.ERROR->{
 
@@ -89,7 +96,11 @@ class ViewActivity : AppCompatActivity() {
         genreAdapter = GenreAdapter(genreList)
         binding.viewGenreRecycler.adapter = genreAdapter
         binding.saveData.setOnClickListener {
-
+            val movies = Movies(moviesId,
+                movieImage.toString(), movieName.toString() ,movieDescription.toString(), movieRating.toString()
+            )
+            movieViewModel.insertMovie(movies)
+            Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show()
         }
         Glide.with(this)
             .load("https://image.tmdb.org/t/p/w500${movieImage}")
