@@ -45,7 +45,6 @@ class ViewActivity : AppCompatActivity() {
         castProfile = ArrayList()
         videList = ArrayList()
 
-
         moviesId = intent.getIntExtra("movies_id", 0)
         val movieImage = intent.getStringExtra("movies_image")
         val movieName = intent.getStringExtra("movies_name")
