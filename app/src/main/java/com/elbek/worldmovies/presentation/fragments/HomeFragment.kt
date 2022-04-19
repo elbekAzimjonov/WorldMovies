@@ -145,7 +145,6 @@ class HomeFragment : Fragment() {
         recyclerView = views.findViewById(R.id.recycler_movie)
         popularRvView = views.findViewById(R.id.popularRecycler)
         loading = views.findViewById(R.id.loadProgress)
-//        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieList = ArrayList()
         popularList = ArrayList()
         genreList = ArrayList()
