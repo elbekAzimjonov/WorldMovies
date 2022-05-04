@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,7 @@ import javax.inject.Inject
 @Suppress("DEPRECATION")
 class ViewActivity : AppCompatActivity() {
     private var moviesId: Int = 0
-
+    private lateinit var back: ImageView
     private lateinit var castAdapter: CastAdapter
     private lateinit var castProfile: ArrayList<CastProfile>
     private lateinit var genreAdapter: GenreAdapter
@@ -44,7 +45,9 @@ class ViewActivity : AppCompatActivity() {
         castData = ArrayList()
         castProfile = ArrayList()
         videList = ArrayList()
-
+        binding.back.setOnClickListener {
+            finish()
+        }
         moviesId = intent.getIntExtra("movies_id", 0)
         val movieImage = intent.getStringExtra("movies_image")
         val movieName = intent.getStringExtra("movies_name")
@@ -55,17 +58,17 @@ class ViewActivity : AppCompatActivity() {
         videList.clear()
         movieViewModel.getVideoLiveData(moviesId).observe(this) {
             when (it.status) {
-               Status.LOADING->{
+                Status.LOADING -> {
 
-               }
+                }
                 Status.SUCCESS -> {
                     try {
                         videList.add(it.data!!.results[0].key)
-                    }catch (e:IndexOutOfBoundsException){
+                    } catch (e: IndexOutOfBoundsException) {
 
                     }
                 }
-                Status.ERROR->{
+                Status.ERROR -> {
 
                 }
             }
@@ -73,12 +76,11 @@ class ViewActivity : AppCompatActivity() {
 
         binding.floatingActionButton.setOnClickListener {
             val keyId = moviesId
+            val intentPlayer = Intent(this, PlayerActivity::class.java)
             movieViewModel.getVideoLiveData(keyId).observe(this) {
-                val intentPlayer = Intent(this, PlayerActivity::class.java)
                 intentPlayer.putExtra("movies_key", videList[0])
-                startActivity(intentPlayer)
             }
-
+            startActivity(intentPlayer)
         }
 
         getCost()
@@ -95,8 +97,12 @@ class ViewActivity : AppCompatActivity() {
         genreAdapter = GenreAdapter(genreList)
         binding.viewGenreRecycler.adapter = genreAdapter
         binding.saveData.setOnClickListener {
-            val movies = Movies(moviesId,
-                movieImage.toString(), movieName.toString() ,movieDescription.toString(), movieRating.toString()
+            val movies = Movies(
+                moviesId,
+                movieImage.toString(),
+                movieName.toString(),
+                movieDescription.toString(),
+                movieRating.toString()
             )
             movieViewModel.insertMovie(movies)
             Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show()

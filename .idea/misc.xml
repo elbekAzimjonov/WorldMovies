@@ -5,7 +5,11 @@
       <map>
         <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/drawable/ic_download.xml" value="0.1455" />
         <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/drawable/ic_play.xml" value="0.154" />
+        <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/activity_exoplayer.xml" value="0.15443840579710144" />
+        <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/activity_player.xml" value="0.22" />
         <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/activity_view.xml" value="0.2" />
+        <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/exo_playback_control_view.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/fragment_movie.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/Elbek Azimjonov/AndroidStudioProjects/WorldMovies/app/src/main/res/layout/genre_item.xml" value="0.19375" />
         <entry key="..\:/project/WorldMovies/app/src/main/res/drawable/custom_login.xml" value="0.67" />

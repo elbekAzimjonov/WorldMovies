@@ -41,8 +41,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(
                                 this@LoginActivity,
                                 "Something went wrong",
-                                Toast.LENGTH_LONG
-                            ).show()
+                                Toast.LENGTH_LONG).show()
                         }
                     }
             } else {

@@ -21,8 +21,12 @@ class PlayerActivity : YouTubeBaseActivity() {
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         hideSystem()
         setContentView(binding.root)
-        val movieId = intent.getStringExtra("movies_key")
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+
+        val movieId = intent.getStringExtra("movies_key")
         youTubePlayer = binding.youtubePlayer
         youtubePayerInit = object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(

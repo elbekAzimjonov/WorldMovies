@@ -14,10 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorldMovies">
         <activity
-            android:name="com.elbek.worldmovies.presentation.ui.LoginActivity"
+            android:name=".presentation.ui.ExoplayerActivity"
             android:exported="false" />
         <activity
-            android:name="com.elbek.worldmovies.presentation.ui.AuthenticationActivity"
+            android:name=".presentation.ui.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.ui.AuthenticationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,18 +29,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.elbek.worldmovies.presentation.ui.PlayerActivity"
+            android:name=".presentation.ui.PlayerActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name="com.elbek.worldmovies.presentation.ui.ViewActivity"
+            android:name=".presentation.ui.ViewActivity"
             android:exported="false"
             android:label="@string/title_activity_view"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.WorldMovies.NoActionBar" />
         <activity
-            android:name="com.elbek.worldmovies.presentation.ui.MainActivity"
-            android:exported="false"></activity>
+            android:name=".presentation.ui.MainActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9183950610372092~6576853735"/>
     </application>
 
 </manifest>

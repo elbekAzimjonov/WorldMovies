@@ -1,9 +1,11 @@
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 }
 
 android {
@@ -41,6 +43,18 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:$nav_version" // For Kotlin use navigation-fragment-ktx
     implementation "androidx.navigation:navigation-ui:$nav_version" // For Kotlin use navigation
 
+    //ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
+
+    // For youtube Url Extractor
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:v1.7.0'
+
+    //Admob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+
+    //One Signal
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
+
     //Dagger 2
     def daggerVer = "2.40"
     implementation "com.google.dagger:dagger:$daggerVer"
@@ -70,6 +84,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    releaseImplementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
 
     //db
     def room_version = "2.4.2"
